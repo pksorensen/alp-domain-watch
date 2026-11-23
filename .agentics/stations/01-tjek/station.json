@@ -3,6 +3,6 @@
   "name": "Tjek domæner",
   "trigger": {
     "type": "dispatch_worker",
-    "run": { "command": "./watch.sh eavfw.com eavfw.org", "timeoutMs": 120000 }
+    "run": { "command": ".agentics/scripts/watch.sh eavfw.com eavfw.org", "timeoutMs": 120000 }
   }
 }

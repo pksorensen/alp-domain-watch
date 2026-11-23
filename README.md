@@ -2,7 +2,7 @@
 
 En Agentics-samlebåndslinje der holder øje med domæner, som er ved at blive frigivet.
 Hver time kører stationen `Tjek domæner` et **kodetrin** (`trigger.run`), ikke en agent:
-`./watch.sh eavfw.com eavfw.org` laver ét RDAP-opslag pr. domæne.
+`.agentics/scripts/watch.sh eavfw.com eavfw.org` laver ét RDAP-opslag pr. domæne.
 
 | RDAP-svar | Handling |
 |---|---|
@@ -17,4 +17,8 @@ Hver time kører stationen `Tjek domæner` et **kodetrin** (`trigger.run`), ikke
 - Stationen koblet til ejerens Agent Share-indbakke (Operator-fanen → *Agent Share inbox → Connect*).
   Jobbet bruger sit eget kortlivede workload-token; der ligger ingen indbakketoken nogen steder.
 
-Kør lokalt: `./watch.sh example.com` (uden `agent-share` skriver den bare status).
+Kør lokalt: `.agentics/scripts/watch.sh example.com` (uden `agent-share` skriver den bare status).
+
+Scriptet ligger under `.agentics/scripts/`, fordi et kodetrin kører i
+*projektets* checkout, ikke dette repos: importen tager `.agentics/scripts/*`
+med, og runneren (pks-cli ≥ 7.22) skriver dem ind i jobbet som eksekverbare.
