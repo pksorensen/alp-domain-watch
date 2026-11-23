@@ -1,0 +1,10 @@
+{
+  "schedule": {
+    "name": "Domænevagt hver time",
+    "cadence": { "kind": "hourly", "minute": 7, "timeZone": "Europe/Copenhagen" },
+    "task": {
+      "title": "Domænetjek {{date}}",
+      "description": "RDAP-opslag på de overvågede domæner. Besked til Agent Share kun når et domæne er ledigt eller lige er blevet taget."
+    }
+  }
+}

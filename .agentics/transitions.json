@@ -1,0 +1,4 @@
+[
+  { "from": "check", "to": "ok", "condition": "success" },
+  { "from": "check", "to": "failed", "condition": "failure" }
+]

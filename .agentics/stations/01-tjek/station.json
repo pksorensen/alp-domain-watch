@@ -1,0 +1,8 @@
+{
+  "id": "check",
+  "name": "Tjek domæner",
+  "trigger": {
+    "type": "dispatch_worker",
+    "run": { "command": "./watch.sh eavfw.com eavfw.org", "timeoutMs": 120000 }
+  }
+}

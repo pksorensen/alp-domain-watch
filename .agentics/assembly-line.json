@@ -1,0 +1,5 @@
+{
+  "name": "Domænevagt",
+  "description": "Tjekker hver time via RDAP om udvalgte domæner er blevet ledige, og sender en besked til ejerens Agent Share-indbakke når det er tid til at købe. Et deterministisk kodetrin — ingen agent.",
+  "version": "0.1.0"
+}
