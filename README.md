@@ -8,7 +8,7 @@ Hver time kører stationen `Tjek domæner` et **kodetrin** (`trigger.run`), ikke
 |---|---|
 | 404 | `agent-share send "… er ledigt — køb nu"`, hver time indtil planen slås fra |
 | `pending delete` | intet |
-| registreret inden for 3 timer | `agent-share send "… blev taget"` |
+| registreret inden for 65 min | `agent-share send "… blev taget"` |
 | andet 200 | intet |
 
 ## Krav
