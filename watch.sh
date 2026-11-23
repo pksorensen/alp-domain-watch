@@ -16,10 +16,13 @@ rdap_base() {
 }
 
 notify() { # title body url
+  # Billedet skal ikke have CLI'en på forhånd: npx henter den, hvis node findes.
   if command -v agent-share >/dev/null 2>&1; then
     agent-share send --title "$1" --body "$2" ${3:+--url "$3"}
+  elif command -v npx >/dev/null 2>&1; then
+    npx -y @agentics-live/agent-share send --title "$1" --body "$2" ${3:+--url "$3"}
   else
-    echo "agent-share CLI mangler på runneren — beskeden blev IKKE sendt: $1" >&2
+    echo "hverken agent-share eller npx på runneren — beskeden blev IKKE sendt: $1" >&2
     return 1
   fi
 }

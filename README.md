@@ -13,7 +13,7 @@ Hver time kører stationen `Tjek domæner` et **kodetrin** (`trigger.run`), ikke
 
 ## Krav
 
-- En Agentics-runner på projektet, der annoncerer `code-step:v1`, med `agent-share` på PATH.
+- En Agentics-runner på projektet, der annoncerer `code-step:v1`, med `agent-share` på PATH — ellers hentes den med `npx @agentics-live/agent-share` (kræver node).
 - Stationen koblet til ejerens Agent Share-indbakke (Operator-fanen → *Agent Share inbox → Connect*).
   Jobbet bruger sit eget kortlivede workload-token; der ligger ingen indbakketoken nogen steder.
 
