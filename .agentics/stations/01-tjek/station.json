@@ -4,7 +4,7 @@
   "trigger": {
     "type": "dispatch_worker",
     "run": {
-      "command": "export PATH=\"$HOME/.local/bin:$PATH\"; command -v kanariefugl >/dev/null 2>&1 || curl -fsSL https://agentics.dk/install/pks-agent-domain.sh | NO_MODIFY_PATH=1 bash; kanariefugl watch eavfw.com eavfw.org --notify",
+      "command": "export PATH=\"$HOME/.local/bin:$PATH\"; command -v kanariefugl >/dev/null 2>&1 || curl -fsSL https://agentics.dk/install/pks-agent-domain.sh | NO_MODIFY_PATH=1 bash; kanariefugl watch eavfw.com eavfw.org --recent 17h --notify",
       "timeoutMs": 120000
     }
   }
