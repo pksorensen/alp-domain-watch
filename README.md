@@ -41,6 +41,13 @@ Et værktøj hentet med husets installer afhænger ikke af projektrepoets indhol
 kommandoen som én `bash -lc`, og Debians `~/.profile` lægger kun `~/.local/bin`
 på PATH hvis mappen fandtes da shellen startede.
 
+`command -v`-vagten sparer ikke en download pr. time, som man kunne tro.
+**Hvert job får sin egen container** — målt 25-11-2026: fem containere på rad for
+dette projekt (05:07, 06:08, 07:08, 08:07, 08:31 UTC), og kun den sidste havde
+binæren. Vagten gælder altså inden for ét job, ikke på tværs. Det er den gode
+retning at tage fejl i: **en ny udgivelse af CLI'en rammer jobbet af sig selv ved
+næste tick**, uden at linjen skal genimporteres.
+
 ## Krav
 
 - En Agentics-runner på projektet, der annoncerer `code-step:v1`.
