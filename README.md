@@ -1,16 +1,32 @@
 # alp-domain-watch
 
-En Agentics-samlebåndslinje der holder øje med domæner, som er ved at blive frigivet.
-Hver time kører stationen `Tjek domæner` et **kodetrin** (`trigger.run`), ikke en agent:
-`kanariefugl watch eavfw.com eavfw.org --notify` laver ét RDAP-opslag pr. domæne.
+En Agentics-samlebåndslinje der holder øje med domæner vi **ejer**. Hver mandag
+kl. 08:07 kører stationen `Tjek domæner` et **kodetrin** (`trigger.run`), ikke en agent:
 
-| RDAP-svar | Handling |
+```sh
+kanariefugl guard eavfw.com eavfw.org eavfw.io --ns-suffix ns.cloudflare.com --notify
+```
+
+| Fund | Handling |
 |---|---|
-| 404 fra registret | `agent-share send "… er ledigt — køb nu"`, hver time indtil planen slås fra |
-| `pending delete` | intet — navnet er på vej ud, men ikke ledigt endnu |
-| registreret inden for 65 min | `agent-share send "… blev taget"` |
-| andet 200 | intet |
-| 404 med *"No RDAP service"* | **fejl**, ikke en dom — se nedenfor |
+| domænet er ikke registreret længere | besked |
+| registreringen udløber inden for 14 dage | besked |
+| RDAP-status hold, redemption eller pending delete | besked |
+| en navneserver uden for `ns.cloudflare.com` | besked |
+| certifikatet på :443 er udløbet, udløber snart eller matcher ikke | besked |
+| alt i orden | **intet** |
+
+Alle fund samles i **én** besked pr. kørsel. Et RDAP-opslag der ikke kunne laves,
+giver et Fejlet kort, ikke en besked.
+
+**Hvorfor ugentligt.** eavfw.com og eavfw.org gik tabt i november 2026, fordi de
+udløb uden at nogen så på datoen. En udløbsfrist er uger lang, så én kørsel om ugen
+er nok. Nedetid og certifikater mellem kørslerne fanges løbende af pks-agent-ops'
+probes på arvo (monitorerne `eavfw-io`, `eavfw-com`, `eavfw-org`), der pusher når
+en side går ned.
+
+**Før 0.2.0** ventede linjen hver time på at eavfw.com og eavfw.org blev ledige
+(`kanariefugl watch`). Begge blev købt 24.-25/11-2026, og den rolle er slut.
 
 ## Hvorfor kommandoen henter et værktøj først
 
@@ -20,7 +36,7 @@ Stationens kommando er:
 export PATH="$HOME/.local/bin:$PATH"
 command -v kanariefugl >/dev/null 2>&1 ||
   curl -fsSL https://agentics.dk/install/pks-agent-domain.sh | NO_MODIFY_PATH=1 bash
-kanariefugl watch eavfw.com eavfw.org --notify
+kanariefugl guard eavfw.com eavfw.org eavfw.io --ns-suffix ns.cloudflare.com --notify
 ```
 
 Den lå tidligere i `.agentics/scripts/watch.sh`, ud fra en antagelse om at importen

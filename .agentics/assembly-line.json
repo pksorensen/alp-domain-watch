@@ -1,5 +1,5 @@
 {
-  "name": "Domænevagt",
-  "description": "Tjekker hver time via RDAP om udvalgte domæner er blevet ledige, og sender en besked til ejerens Agent Share-indbakke når det er tid til at købe. Et deterministisk kodetrin — ingen agent.",
-  "version": "0.1.0"
+  "name": "Domænesundhed",
+  "description": "Tjekker hver mandag de domæner vi ejer: at de stadig er registreret, udløbsdato, RDAP-status, navneservere og certifikat. Sender kun en besked til ejerens Agent Share-indbakke når noget kræver handling. Et deterministisk kodetrin — ingen agent.",
+  "version": "0.2.0"
 }
