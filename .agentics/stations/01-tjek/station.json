@@ -3,6 +3,9 @@
   "name": "Tjek domæner",
   "trigger": {
     "type": "dispatch_worker",
-    "run": { "command": ".agentics/scripts/watch.sh eavfw.com eavfw.org", "timeoutMs": 120000 }
+    "run": {
+      "command": "export PATH=\"$HOME/.local/bin:$PATH\"; command -v kanariefugl >/dev/null 2>&1 || curl -fsSL https://agentics.dk/install/pks-agent-domain.sh | NO_MODIFY_PATH=1 bash; kanariefugl watch eavfw.com eavfw.org --notify",
+      "timeoutMs": 120000
+    }
   }
 }
